@@ -75,15 +75,14 @@ class Service
      */
     public function uninstall()
     {
-		
+				$db = $this->di['db'];
 				$sql = "DROP TABLE `activity_client_sms`;";
-				
 				$db->exec($sql);
-				
 				$this->di['logger']->info('SMS Gateway notifications uninstalled');
         //throw new \Box_Exception("Throw exception to terminate module uninstallation process with a message", array(), 124);
-        return true;
+				return true;
     }
+
 
     /**
      * Method to update module. When you release new version to
