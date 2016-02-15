@@ -1,0 +1,47 @@
+    <div class="help">
+        <h3>{% trans 'Clickatel SMS Gateway configuration' %}</h3>
+        <p>{% trans 'Configure this for Clickatel SMS Gateway' %}</p>
+    </div>
+    
+    <fieldset>
+        <div class="rowElem noborder">
+            <label>{% trans 'API ID:' %}</label>
+            <div class="formRight">
+                <input type="text" name="api_id" value="{{params.api_id}}" placeholder="{% trans 'Example custom value' %}"/>
+            </div>
+            <div class="fix"></div>
+        </div>
+        <div class="rowElem noborder">
+            <label>{% trans 'Username:' %}</label>
+            <div class="formRight">
+                <input type="text" name="username" value="{{params.username}}" placeholder="{% trans 'Example custom value' %}"/>
+            </div>
+            <div class="fix"></div>
+        </div>
+        <div class="rowElem noborder">
+            <label>{% trans 'Password:' %}</label>
+            <div class="formRight">
+                <input type="text" name="password" value="{{params.password}}" placeholder="{% trans 'Example custom value' %}"/>
+            </div>
+            <div class="fix"></div>
+        </div>
+        <div class="rowElem noborder">
+            <label>{% trans 'Source address:' %}</label>
+            <div class="formRight">
+                <input type="text" name="source_address" value="{{params.source_address}}" placeholder="{% trans 'Example custom value' %}"/>
+            </div>
+            <div class="fix"></div>
+        </div>
+        <div class="rowElem noborder">
+            <label>{% trans 'Client field:' %}</label>
+            <div class="formRight">
+                <input type="text" name="client_field" value="{{params.client_field}}" placeholder="{% trans 'Example custom value' %}"/>
+            </div>
+            <div class="fix"></div>
+        </div>
+
+        <input type="submit" value="{% trans 'Update' %}" class="greyishBtn submitForm" />
+        <input type="hidden" name="ext" value="mod_smsgateway" />
+				<input type="hidden" name="plugin" value="clickatel" />
+    </fieldset>
+		

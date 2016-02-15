@@ -1,0 +1,36 @@
+{% extends request.ajax ? "layout_blank.phtml" : "layout_default.phtml" %}
+{% import "macro_functions.phtml" as mf %}
+{% block meta_title %}SMS Gateway notifications{% endblock %}
+{% set active_menu = 'smsgateway' %}
+
+{% block breadcrumbs %}
+<ul>
+    <li class="firstB"><a href="{{ '/'|alink }}">{% trans 'Home' %}</a></li>
+    <li><a href="{{ 'system'|alink }}">{% trans 'Settings' %}</a></li>
+    <li class="lastB">{% trans 'SMS Gateway notifications' %}</li>
+</ul>
+{% endblock %}
+
+{% block content %}
+
+<div class="widget">
+    <div class="head">
+        <h5 class="iCog">{% trans 'SMS Gateway notifications settings' %}</h5>
+    </div>
+
+{% set params = admin.extension_config_get({"ext":"mod_smsgateway"}) %}
+
+<form method="post" action="{{ 'api/admin/extension/config_save'|link }}" class="mainForm api-form" data-api-msg="{% trans 'Configuration updated' %}">
+    
+		{% if code == 'boxis' %}
+			{% include "partial_smsgateway_boxis.phtml" %}
+		{% elseif code == 'clickatell' %}
+			{% include "partial_smsgateway_clickatell.phtml" %}
+		{% else %}
+			{% include "partial_smsgateway_general.phtml" %}
+		{% endif %}
+		
+</form>
+</div>
+
+{% endblock %}

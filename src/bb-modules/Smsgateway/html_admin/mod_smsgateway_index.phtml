@@ -1,0 +1,103 @@
+{% extends request.ajax ? "layout_blank.phtml" : "layout_default.phtml" %}
+
+{% block meta_title %}{% trans 'SMS Gateway' %}{% endblock %}
+
+{% set active_menu = 'smsgateway' %}
+
+{% block content %}
+
+<div class="widget">
+    <div class="head">
+        <h5>{% trans 'SMS Gateway' %}</h5>
+    </div>
+
+    <div class="help">
+        <h3>{% trans 'SMS Gateway for BoxBilling' %}</h3>
+    </div>
+    <div class="body">
+        <a href="{{ 'smsgateway'|alink }}">Example module index</a> <br/>
+        <a href="{{ 'extension/settings/smsgateway'|alink }}">Example settings page</a> <br/>
+        <a href="{{ 'smsgateway'|alink }}/test">Test link with static URL</a> <br/>
+        <a href="{{ 'smsgateway'|alink }}/user/1">Test link location with parameter 1</a> <br/>
+        <a href="{{ 'smsgateway'|alink }}/user/2">Test link location with parameter 2</a> <br/>
+        <a href="{{ 'smsgateway'|alink }}/user/3">Test link location with parameter 3</a> <br/>
+        <a href="{{ 'smsgateway'|alink }}/api">API example</a>
+        <a href="{{ 'smsgateway'|link }}" target="_blank">Client area link example</a>
+    </div>
+
+    {# Check if example parameters passed to template file #}
+    {% if youparamname %}
+    <div class="help">
+        <h3>{% trans 'Parameters from Controller' %}</h3>
+    </div>
+    <div class="body">
+        <p>You have passed parameter youparamname: <strong>{{ youparamname }}</strong></p>
+    </div>
+    {% endif %}
+
+    {% if plugins %}
+    <div class="help">
+        <h3>{% trans 'Installed Plugins' %}</h3>
+    </div>
+    <div class="body">
+        <p>You have passed parameter plugin: <strong>{{ plugin.title }}</strong></p>
+				<table class="tableStatic wide">
+					<tbody>
+						{% for code, plugin_title in admin.smsgateway_plugin_get_pairs %}
+						<tr {% if loop.first %}class="noborder"{% endif %}>
+							<td>{{ plugin_title }}</td>
+							<td class="actions" style="width:13%">
+							<a class="bb-button btn14" href="{{ 'smsgateway/plugin'|alink }}/{{ code }}"><img src="images/icons/dark/pencil.png" alt=""></a>
+							<!-- a class="bb-button btn14" href="{{ 'smsgateway/plugin'|alink }}"><img src="images/icons/dark/pencil.png" alt=""></a-->
+							</td>
+            </tr>
+						{% else %}
+            <tr>
+							<td colspan="2">{% trans 'The list is empty' %}</td>
+						</tr>
+						{% endfor %}						
+						</tbody>
+					</table>					
+    </div>
+    {% endif %}		
+		
+		
+
+
+    {# Check if example parameters passed to template file #}
+    {% if userid %}
+    <div class="help">
+        <h3>{% trans 'Parameters from URL' %}</h3>
+    </div>
+    <div class="body">
+        <p>You have passed parameter userid: <strong>{{ userid }}</strong></p>
+    </div>
+    {% endif %}
+
+    {% if api_smsgateway %}
+        {# API example #}
+        <div class="help">
+            <h3>{% trans 'API example' %}</h3>
+        </div>
+        <div class="body">
+        <h5 class="pt12">Data from API and passed to template from controller</h5>
+        <pre>{% debug list_from_controller %}</pre>
+
+        <h5 class="pt12">Data from API accessed directly from template file</h5>
+        {% set list = admin.smsgateway_get_something({"microsoft":1}) %}
+        <pre>{% debug list %}</pre>
+        </div>
+    {% endif %}
+</div>
+
+<div class="widget">
+    <div class="head">
+        <h5>{% trans 'README' %}</h5>
+    </div>
+    
+    <div class="body list arrowBlue">
+        {{ guest.smsgateway_readme|markdown }}
+    </div>
+</div>
+
+{% endblock %}

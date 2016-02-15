@@ -1,0 +1,19 @@
+{% extends request.ajax ? "layout_blank.phtml" : "layout_default.phtml" %}
+
+{% block meta_title %}SMS Gateway notifications{% endblock %}
+
+{% set active_menu = 'smsgateway' %}
+
+{% block content %}
+
+<div class="widget">
+    <div class="head">
+        <h5>{% trans 'About SMS Gateway Notifications' %}</h5>
+    </div>
+    
+    <div class="body list arrowBlue">
+        {{ guest.smsgateway_readme|markdown }}
+    </div>
+</div>
+
+{% endblock %}

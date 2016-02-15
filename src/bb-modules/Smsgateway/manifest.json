@@ -1,0 +1,12 @@
+{
+    "id":           "smsgateway",
+	"type":         "mod",
+    "name":         "SMS Gateway",
+    "description":  "SMS gateway for boxbilling.",
+    "icon_url":     "icon.png",
+    "homepage_url": "http://www.dws-solutions.com",
+    "author":       "DwS Solutions",
+    "author_url":   "http://www.dws-solutions.com",
+    "license":      "",
+    "version":      "1.0.1"
+}

@@ -1,0 +1,25 @@
+    <div class="help">
+        <h3>{% trans 'SMS Gateway general configuration' %}</h3>
+        <p>{% trans 'Configure SMS Gateway notifications general settings' %}</p>
+    </div>
+    
+    <fieldset>
+        <div class="rowElem noborder">
+            <label>{% trans 'SMS Gateway plugin' %}</label>
+            <div class="formRight">
+                {{ mf.selectbox('config[plugin]', admin.smsgateway_plugin_get_pairs, smsgateway.plugin, 1) }}
+            </div>
+            <div class="fix"></div>
+        </div>
+
+        <div class="rowElem">
+            <label>{% trans 'Public Parameter title' %}</label>
+            <div class="formRight">
+                <input type="text" name="public[param]" value="{{params.public.param}}" placeholder="{% trans 'This setting will be accessible by Guest API' %}"/>
+            </div>
+            <div class="fix"></div>
+        </div>
+
+        <input type="submit" value="{% trans 'Update' %}" class="greyishBtn submitForm" />
+        <input type="hidden" name="ext" value="mod_smsgateway" />
+    </fieldset>

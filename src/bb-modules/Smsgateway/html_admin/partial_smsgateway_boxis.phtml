@@ -1,0 +1,47 @@
+    <div class="help">
+        <h3>{% trans 'Boxis SMS Gateway configuration' %}</h3>
+        <p>{% trans 'Configure this for Boxis SMS Gateway' %}</p>
+    </div>
+    
+    <fieldset>
+        <div class="rowElem noborder">
+            <label>{% trans 'API Key:' %}</label>
+            <div class="formRight">
+                <input type="text" name="api_key" value="{{params.api_key}}" placeholder="{% trans 'Example custom value' %}"/>
+            </div>
+            <div class="fix"></div>
+        </div>
+        <div class="rowElem noborder">
+            <label>{% trans 'E-mail:' %}</label>
+            <div class="formRight">
+                <input type="text" name="email" value="{{params.email}}" placeholder="{% trans 'Example custom value' %}"/>
+            </div>
+            <div class="fix"></div>
+        </div>
+        <div class="rowElem noborder">
+            <label>{% trans 'Sender name:' %}</label>
+            <div class="formRight">
+                <input type="text" name="sender_name" value="{{params.sender_name}}" placeholder="{% trans 'Example custom value' %}"/>
+            </div>
+            <div class="fix"></div>
+        </div>
+        <div class="rowElem noborder">
+            <label>{% trans 'Highest priority:' %}</label>
+            <div class="formRight">
+                CHKBOX
+            </div>
+            <div class="fix"></div>
+        </div>
+        <div class="rowElem noborder">
+            <label>{% trans 'Client field:' %}</label>
+            <div class="formRight">
+                <input type="text" name="client_field" value="{{params.client_field}}" placeholder="{% trans 'Example custom value' %}"/>
+            </div>
+            <div class="fix"></div>
+        </div>
+
+        <input type="submit" value="{% trans 'Update' %}" class="greyishBtn submitForm" />
+        <input type="hidden" name="ext" value="mod_smsgateway" />
+				<input type="hidden" name="plugin" value="boxis" />
+    </fieldset>
+		
