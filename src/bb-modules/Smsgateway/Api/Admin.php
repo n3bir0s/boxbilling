@@ -53,31 +53,49 @@ class Admin extends \Api_Abstract
 
 
     /**
-     * Edit Gateway plugin settings
+     * Create new redirect
      * 
-     * @param string $code - theme code
-     * @return bool
+     * @param string $path - redirect path
+     * @param string $target - redirect target
+     * 
+     * @return int redirect id
      */
-    public function select($data)
+    public function config_save($data)
     {
         $required = array(
-            'code'    => 'Plugin code is missing',
+            'api_key'   => 'Invalid or empty API KEY',
+            'username' => 'Invalid or empty Email/Username',
+            'client_field' => 'Invalid or empty Client field',
         );
         $this->di['validator']->checkRequiredParamsForArray($required, $data);
-
-/*
-        $theme = $this->getService()->getTheme($data['code']);
-
-        $systemService = $this->di['mod_service']('system');
-        if($theme->isAdminAreaTheme()) {
-            $systemService->setParamValue('admin_theme', $data['code']);
-        } else {
-            $systemService->setParamValue('theme', $data['code']);
-        }
-*/
-
-
-        $this->di['logger']->info('Plugin settings changed');
-        return true;
-    }		
+        
+        $plugin = $this->di['db']->dispense('extension_meta');
+        $plugin->extension = 'mod_smsgateway';
+        $plugin->rel_type = 'settings';
+        $plugin->rel_id = $data['plugin_code'];
+        $plugin->meta_key = 'config';
+        $plugin->meta_value = json_encode($data);
+        $plugin->created_at = date('Y-m-d H:i:s');
+        $plugin->updated_at = date('Y-m-d H:i:s');
+        $this->di['db']->store($plugin);
+        
+        $id = $plugin->id;
+        
+        $this->di['logger']->info('Configured pluging #%s', $id);
+        return (int)$id;
+    }	
+		
+    public function config_get($data){
+        $sql="SELECT meta_value
+            FROM extension_meta
+            WHERE extension = 'mod_smsgateway'
+            AND rel_id = :code
+            LIMIT 1;";
+						
+				$plugin_config = $this->di['db']->getCell($sql, array('code'=>$data['code']));
+        return json_decode($plugin_config);
+				
+    }	
+		
+	
 }

@@ -1,3 +1,6 @@
+{% set params = admin.smsgateway_config_get({"code": code }) %}
+
+<form method="post" action="{{ 'api/admin/smsgateway/config_save'|link }}" class="mainForm api-form" data-api-msg="{% trans 'Configuration updated' %}">
     <div class="help">
         <h3>{% trans 'Clickatel SMS Gateway configuration' %}</h3>
         <p>{% trans 'Configure this for Clickatel SMS Gateway' %}</p>
@@ -7,7 +10,7 @@
         <div class="rowElem noborder">
             <label>{% trans 'API ID:' %}</label>
             <div class="formRight">
-                <input type="text" name="api_id" value="{{params.api_id}}" placeholder="{% trans 'Example custom value' %}"/>
+                <input type="text" name="api_key" value="{{params.api_key}}" placeholder="{% trans 'Example custom value' %}"/>
             </div>
             <div class="fix"></div>
         </div>
@@ -42,6 +45,6 @@
 
         <input type="submit" value="{% trans 'Update' %}" class="greyishBtn submitForm" />
         <input type="hidden" name="ext" value="mod_smsgateway" />
-				<input type="hidden" name="plugin" value="clickatel" />
+				<input type="hidden" name="plugin_code" value="clickatell" />
     </fieldset>
-		
+</form>

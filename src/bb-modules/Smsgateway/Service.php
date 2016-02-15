@@ -83,7 +83,6 @@ class Service
 				return true;
     }
 
-
     /**
      * Method to update module. When you release new version to
      * extensions.boxbilling.com then this method will be called
@@ -177,6 +176,10 @@ class Service
         return $row;
     }
 
+		
+		
+		
+		
     /**
      * Example event hook. Any module can hook to any BoxBilling event and perform actions
      *

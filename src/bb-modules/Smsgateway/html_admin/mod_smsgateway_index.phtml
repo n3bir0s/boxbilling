@@ -11,36 +11,11 @@
         <h5>{% trans 'SMS Gateway' %}</h5>
     </div>
 
-    <div class="help">
-        <h3>{% trans 'SMS Gateway for BoxBilling' %}</h3>
-    </div>
-    <div class="body">
-        <a href="{{ 'smsgateway'|alink }}">Example module index</a> <br/>
-        <a href="{{ 'extension/settings/smsgateway'|alink }}">Example settings page</a> <br/>
-        <a href="{{ 'smsgateway'|alink }}/test">Test link with static URL</a> <br/>
-        <a href="{{ 'smsgateway'|alink }}/user/1">Test link location with parameter 1</a> <br/>
-        <a href="{{ 'smsgateway'|alink }}/user/2">Test link location with parameter 2</a> <br/>
-        <a href="{{ 'smsgateway'|alink }}/user/3">Test link location with parameter 3</a> <br/>
-        <a href="{{ 'smsgateway'|alink }}/api">API example</a>
-        <a href="{{ 'smsgateway'|link }}" target="_blank">Client area link example</a>
-    </div>
-
-    {# Check if example parameters passed to template file #}
-    {% if youparamname %}
-    <div class="help">
-        <h3>{% trans 'Parameters from Controller' %}</h3>
-    </div>
-    <div class="body">
-        <p>You have passed parameter youparamname: <strong>{{ youparamname }}</strong></p>
-    </div>
-    {% endif %}
-
     {% if plugins %}
     <div class="help">
         <h3>{% trans 'Installed Plugins' %}</h3>
     </div>
     <div class="body">
-        <p>You have passed parameter plugin: <strong>{{ plugin.title }}</strong></p>
 				<table class="tableStatic wide">
 					<tbody>
 						{% for code, plugin_title in admin.smsgateway_plugin_get_pairs %}

@@ -1,25 +1,55 @@
-    <div class="help">
-        <h3>{% trans 'SMS Gateway general configuration' %}</h3>
-        <p>{% trans 'Configure SMS Gateway notifications general settings' %}</p>
-    </div>
-    
-    <fieldset>
-        <div class="rowElem noborder">
-            <label>{% trans 'SMS Gateway plugin' %}</label>
-            <div class="formRight">
-                {{ mf.selectbox('config[plugin]', admin.smsgateway_plugin_get_pairs, smsgateway.plugin, 1) }}
-            </div>
-            <div class="fix"></div>
-        </div>
+{% set params = admin.extension_config_get({"ext":"mod_smsgateway"}) %}
 
-        <div class="rowElem">
-            <label>{% trans 'Public Parameter title' %}</label>
-            <div class="formRight">
-                <input type="text" name="public[param]" value="{{params.public.param}}" placeholder="{% trans 'This setting will be accessible by Guest API' %}"/>
-            </div>
-            <div class="fix"></div>
-        </div>
+<form method="post" action="{{ 'api/admin/extension/config_save'|link }}" class="mainForm api-form" data-api-msg="{% trans 'Configuration updated' %}">
+  <div class="help">
+      <h3>{% trans 'SMS Gateway general configuration' %}</h3>
+      <p>{% trans 'Configure SMS Gateway notifications general settings' %}</p>
+  </div>
+  
+  <fieldset>
+      <div class="rowElem noborder">
+          <label>{% trans 'SMS Gateway plugin' %}</label>
+          <div class="formRight">
+              {{ mf.selectbox('plugin', admin.smsgateway_plugin_get_pairs, params.config.plugin, 1) }}
+          </div>
+          <div class="fix"></div>
+      </div>
+			<div class="rowElem noborder">
+				<label>{% trans 'Notify admin:' %}</label>
+				<div class="formRight">
+					<input type="radio" name="admin_notify" value="1"{% if params.admin_notify %} checked="checked"{% endif %}/><label>{% trans 'Yes' %}</label>
+					<input type="radio" name="admin_notify" value="0"{% if not params.admin_notify %} checked="checked"{% endif %} /><label>{% trans 'No' %}</label>
+				</div>
+				<div class="fix"></div>
+			</div>				
+			<div class="rowElem noborder">
+				<label>{% trans 'Notify staff:' %}</label>
+				<div class="formRight">
+					<input type="radio" name="staff_notify" value="1"{% if params.staff_notify %} checked="checked"{% endif %}/><label>{% trans 'Yes' %}</label>
+					<input type="radio" name="staff_notify" value="0"{% if not params.staff_notify %} checked="checked"{% endif %} /><label>{% trans 'No' %}</label>
+				</div>
+				<div class="fix"></div>
+			</div>				
+			<div class="rowElem noborder">
+				<label>{% trans 'Notify staff on new ticket:' %}</label>
+				<div class="formRight">
+					<input type="radio" name="staff_ticket_notify" value="1"{% if params.staff_ticket_notify %} checked="checked"{% endif %}/><label>{% trans 'Yes' %}</label>
+					<input type="radio" name="staff_ticket_notify" value="0"{% if not params.staff_ticket_notify %} checked="checked"{% endif %} /><label>{% trans 'No' %}</label>
+				</div>
+				<div class="fix"></div>
+			</div>				
+			
+			And so on 
+			
+      <div class="rowElem">
+          <label>{% trans 'Public Parameter title' %}</label>
+          <div class="formRight">
+              <input type="text" name="public[param]" value="{{params.public.param}}" placeholder="{% trans 'This setting will be accessible by Guest API' %}"/>
+          </div>
+          <div class="fix"></div>
+      </div>
 
-        <input type="submit" value="{% trans 'Update' %}" class="greyishBtn submitForm" />
-        <input type="hidden" name="ext" value="mod_smsgateway" />
-    </fieldset>
+      <input type="submit" value="{% trans 'Update' %}" class="greyishBtn submitForm" />
+      <input type="hidden" name="ext" value="mod_smsgateway" />
+  </fieldset>
+</form>

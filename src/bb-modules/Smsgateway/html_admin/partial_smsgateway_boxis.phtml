@@ -1,3 +1,6 @@
+{% set params = admin.smsgateway_config_get({"code": code }) %}
+
+<form method="post" action="{{ 'api/admin/smsgateway/config_save'|link }}" class="mainForm api-form" data-api-msg="{% trans 'Configuration updated' %}">
     <div class="help">
         <h3>{% trans 'Boxis SMS Gateway configuration' %}</h3>
         <p>{% trans 'Configure this for Boxis SMS Gateway' %}</p>
@@ -14,7 +17,7 @@
         <div class="rowElem noborder">
             <label>{% trans 'E-mail:' %}</label>
             <div class="formRight">
-                <input type="text" name="email" value="{{params.email}}" placeholder="{% trans 'Example custom value' %}"/>
+                <input type="text" name="username" value="{{params.username}}" placeholder="{% trans 'Example custom value' %}"/>
             </div>
             <div class="fix"></div>
         </div>
@@ -28,7 +31,7 @@
         <div class="rowElem noborder">
             <label>{% trans 'Highest priority:' %}</label>
             <div class="formRight">
-                CHKBOX
+                <input type="checkbox" name="high_priority" class="smc" value="{{ params.high_priority }}">
             </div>
             <div class="fix"></div>
         </div>
@@ -42,6 +45,6 @@
 
         <input type="submit" value="{% trans 'Update' %}" class="greyishBtn submitForm" />
         <input type="hidden" name="ext" value="mod_smsgateway" />
-				<input type="hidden" name="plugin" value="boxis" />
+				<input type="hidden" name="plugin_code" value="boxis" />
     </fieldset>
-		
+</form>		
