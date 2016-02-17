@@ -74,7 +74,7 @@ class Box_Curl {
 
     public function useAuth($use) {
         $this->authentication = 0;
-        if ($use == true)
+        if ($use === true)
             $this->authentication = 1;
     }
 
