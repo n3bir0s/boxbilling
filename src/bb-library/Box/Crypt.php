@@ -63,7 +63,7 @@ class Box_Crypt implements \Box\InjectionAwareInterface
 
     private function _getSalt($pass = null)
     {
-        if (null == $pass) {
+        if (null === $pass) {
             $pass = $this->di['config']['salt'];
         }
         return pack('H*', hash('md5', $pass));
