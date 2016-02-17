@@ -3671,7 +3671,7 @@ class Box_Zip
     }
 
     // ----- Look for all path to remove
-    if ($p_remove_all_path == true) {
+    if ($p_remove_all_path === true) {
         // ----- Look for folder entry that not need to be extracted
         if (($p_entry['external']&0x00000010)==0x00000010) {
 
