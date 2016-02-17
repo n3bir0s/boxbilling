@@ -656,11 +656,11 @@ class xmlapi {
 			
 		}
 		
-		if ( $user != null ) {
+		if ( $user !== null ) {
 			$this->user = $user;
 		}
 		
-		if ($password != null ) {
+		if ($password !== null ) {
 			$this->set_password($password);
 		}
 		
@@ -671,7 +671,7 @@ class xmlapi {
 		*/
 		
 		// Set the host, error if not defined
-		if ( $host == null ) {
+		if ( $host === null ) {
 			if ( (defined('XMLAPI_HOST')) && (strlen(XMLAPI_HOST) > 0) ) {
 				$this->host = XMLAPI_HOST;
 			} else {
@@ -1052,11 +1052,11 @@ class xmlapi {
 			throw new Exception('xmlapi_query() requires a function to be passed to it');
 		}
 
-		if ($this->user == null ) {
+		if ($this->user === null ) {
 			throw new Exception('no user has been set');
 		}
 		
-		if ($this->auth ==null) {
+		if ($this->auth === null) {
 			throw new Exception('no authentication information has been set');
 		}
 
@@ -1120,12 +1120,12 @@ class xmlapi {
 		// The only time a response should contain <html> is in the case of authentication error
 		// cPanel 11.25 fixes this issue, but if <html> is in the response, we'll error out.
 		
-		if (stristr($response, '<html>') == true) {
-			if (stristr($response, 'Login Attempt Failed') == true) {
+		if (stristr($response, '<html>') === true) {
+			if (stristr($response, 'Login Attempt Failed') === true) {
 				error_log("Login Attempt Failed");
 				return;
 			}
-			if (stristr($response, 'action="/login/"') == true) {
+			if (stristr($response, 'action="/login/"') === true) {
 				error_log("Authentication Error");
 				return;
 			}
@@ -1186,7 +1186,7 @@ class xmlapi {
         curl_setopt($curl, CURLOPT_POSTFIELDS, "");
 
 		$result = curl_exec($curl);
-		if ($result == false) {
+		if ($result === false) {
 			throw new Exception("curl_exec threw error \"" . curl_error($curl) . "\" for " . $url . "?" . $postdata );
 		}
 		curl_close($curl);
@@ -1649,12 +1649,12 @@ class xmlapi {
 			return false;
 		}
 
-		if ( $user == null && $domain == null ) {
+		if ( $user === null && $domain === null ) {
 			error_log("setsiteip requires that either domain or user is passed to it");
 			return false;
 		}
 
-		if ($user == null ) {
+		if ($user === null ) {
 			return $this->xmlapi_query( "setsiteip", array( "ip" => $ip, "domain" => $domain ) );
 		} else {
 			return $this->xmlapi_query( "setsiteip", array( "ip" => $ip, "user" => $user ) );
@@ -2069,7 +2069,7 @@ class xmlapi {
 			return false;
 		}
 		$params = array("user" => $user);
-		if ( $ip != null ) {
+		if ( $ip !== null ) {
 			$params['ip'] = $ip;
 		}
 		return $this->xmlapi_query('setresellerips',$params);
