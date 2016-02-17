@@ -150,7 +150,7 @@ class Box_Ftp
      */
     public function put_dir($src_dir, $dst_dir = null)
     {
-        if ($dst_dir == null) {
+        if ($dst_dir === null) {
             $dst_dir = $this->cwd();
         }
         $src_dir = rtrim($src_dir, '/');
